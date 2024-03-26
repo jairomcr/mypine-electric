@@ -5,7 +5,8 @@
 								<h2 class="text-center text-primary">Login</h2>
 							</div>
                             <?php $validation = \Config\Services::validation(); ?>
-							<form action="" method="POST" >
+
+							<form action="<?= route_to('admin.login.handler') ?>" method="POST" >
 							   <?= csrf_field() ?>
                                <?php if (!empty(session()->getFlashdata('success'))) : ?>
                                    <div class="alert alert-success">
@@ -39,7 +40,7 @@
 								</div>
                                 <?php if ($validation->getError('login_id')) : ?>
                                      <div class="d-block text-danger" style="margin-top:25px;margin-bottom:15px;" >
-                                      <?= $validation()->getError('login_id') ?>
+                                      <?= $validation->getError('login_id') ?>
                                       </div>
                                 <?php endif; ?>
 								<div class="input-group custom">
@@ -53,7 +54,7 @@
 								</div>
                                 <?php if ($validation->getError('password')) : ?>
                                      <div class="d-block text-danger" style="margin-top:25px;margin-bottom:15px;" >
-                                      <?= $validation()->getError('password') ?>
+                                      <?= $validation->getError('password') ?>
                                       </div>
                                 <?php endif; ?>
 								<div class="row pb-30">
@@ -78,11 +79,7 @@
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="input-group mb-0">
-											<a
-												class="btn btn-primary btn-lg btn-block"
-												href="index.html"
-												>Sign In</a
-											>
+											<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
 										</div>
 										
 									</div>
