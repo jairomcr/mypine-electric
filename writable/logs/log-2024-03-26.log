@@ -319,3 +319,144 @@ INFO - 2024-03-26 08:31:56 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-03-26 08:34:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-03-26 08:35:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-03-26 08:35:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:15:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:16:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:17:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:19:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:19:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:19:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:19:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:19:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:19:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:19:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 21:20:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:25:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:25:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:25:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:25:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:25:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:26:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-26 22:27:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-03-26 23:14:11 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`token` VARCHAR NOT NULL,
+	created_at timestamp default current_ti...' at line 2 in C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\mypine-electrica\system\Database\Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\mypine-electrica\app\Database\Migrations\2024-03-26-230118_CreatePasswordResetTokensTable.php(22): CodeIgniter\Database\Forge->createTable('password_reset_...')
+#5 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(865): App\Database\Migrations\CreatePasswordResetTokensTable->up()
+#6 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\mypine-electrica\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\mypine-electrica\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\mypine-electrica\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\mypine-electrica\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-03-26 23:15:39 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`token` VARCHAR NOT NULL,
+	created_at timestamp default current_ti...' at line 2 in C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\mypine-electrica\system\Database\Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\mypine-electrica\app\Database\Migrations\2024-03-26-230118_CreatePasswordResetTokensTable.php(22): CodeIgniter\Database\Forge->createTable('password_reset_...')
+#5 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(865): App\Database\Migrations\CreatePasswordResetTokensTable->up()
+#6 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\mypine-electrica\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\mypine-electrica\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\mypine-electrica\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\mypine-electrica\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-03-26 23:16:48 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`token` VARCHAR NOT NULL,
+	created_at timestamp default current_ti...' at line 2 in C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\mypine-electrica\system\Database\Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\mypine-electrica\app\Database\Migrations\2024-03-26-230118_CreatePasswordResetTokensTable.php(22): CodeIgniter\Database\Forge->createTable('password_reset_...')
+#5 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(865): App\Database\Migrations\CreatePasswordResetTokensTable->up()
+#6 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\mypine-electrica\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\mypine-electrica\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\mypine-electrica\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\mypine-electrica\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-03-26 23:18:53 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`token` VARCHAR NOT NULL,
+	created_at timestamp default current_ti...' at line 2 in C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\mypine-electrica\system\Database\Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\mypine-electrica\app\Database\Migrations\2024-03-26-230118_CreatePasswordResetTokensTable.php(22): CodeIgniter\Database\Forge->createTable('password_reset_...')
+#5 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(865): App\Database\Migrations\CreatePasswordResetTokensTable->up()
+#6 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\mypine-electrica\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\mypine-electrica\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\mypine-electrica\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\mypine-electrica\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-03-26 23:21:02 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`token` VARCHAR NOT NULL,
+	created_at timestamp default current_ti...' at line 2 in C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\mypine-electrica\system\Database\Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\mypine-electrica\app\Database\Migrations\2024-03-26-230118_CreatePasswordResetTokensTable.php(22): CodeIgniter\Database\Forge->createTable('password_reset_...')
+#5 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(865): App\Database\Migrations\CreatePasswordResetTokensTable->up()
+#6 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\mypine-electrica\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\mypine-electrica\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\mypine-electrica\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\mypine-electrica\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-03-26 23:21:52 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`token` VARCHAR NOT NULL,
+	created_at timestamp default current_ti...' at line 2 in C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\mypine-electrica\system\Database\Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\mypine-electrica\app\Database\Migrations\2024-03-26-230118_CreatePasswordResetTokensTable.php(22): CodeIgniter\Database\Forge->createTable('password_reset_...')
+#5 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(865): App\Database\Migrations\CreatePasswordResetTokensTable->up()
+#6 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\mypine-electrica\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\mypine-electrica\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\mypine-electrica\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\mypine-electrica\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-03-26 23:23:31 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOT NULL,
+	`token` VARCHAR NOT NULL,
+	created_at timestamp default current_ti...' at line 2 in C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\mypine-electrica\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE `p...', 0)
+#1 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `p...')
+#2 C:\xampp\htdocs\mypine-electrica\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `p...')
+#3 C:\xampp\htdocs\mypine-electrica\system\Database\Forge.php(555): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `p...')
+#4 C:\xampp\htdocs\mypine-electrica\app\Database\Migrations\2024-03-26-230118_CreatePasswordResetTokensTable.php(22): CodeIgniter\Database\Forge->createTable('password_reset_...')
+#5 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(865): App\Database\Migrations\CreatePasswordResetTokensTable->up()
+#6 C:\xampp\htdocs\mypine-electrica\system\Database\MigrationRunner.php(181): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\mypine-electrica\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\mypine-electrica\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\mypine-electrica\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\mypine-electrica\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
