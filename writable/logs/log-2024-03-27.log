@@ -4,3 +4,325 @@ INFO - 2024-03-27 01:08:55 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-03-27 01:09:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-03-27 01:09:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-03-27 01:09:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:08:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:08:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:08:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:11:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:12:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:14:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:15:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:15:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:16:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:16:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 06:16:38 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "backend/pages/auth/forgt.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('backend/pages/auth/forgt.php')
+ 2 SYSTEMPATH\Common.php(1178): CodeIgniter\View\View->render('backend/pages/auth/forgt', [], true)
+ 3 APPPATH\Controllers\AuthController.php(112): view('backend/pages/auth/forgt', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 06:17:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:18:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 06:18:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 07:18:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:18:02 --> ErrorException: require(PHPMailer/src/Exception.php): Failed to open stream: No such file or directory
+in APPPATH\Helpers\CIMail_helper.php on line 7.
+ 1 APPPATH\Helpers\CIMail_helper.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(PHPMailer/src/Exception.php): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\mypine-electrica\\app\\Helpers\\CIMail_helper.php', 7)
+ 2 APPPATH\Helpers\CIMail_helper.php(7): require()
+ 3 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:22:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:22:26 --> ErrorException: require(PHPMailer/src/Exception.php): Failed to open stream: No such file or directory
+in APPPATH\Helpers\CIMail_helper.php on line 7.
+ 1 APPPATH\Helpers\CIMail_helper.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(PHPMailer/src/Exception.php): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\mypine-electrica\\app\\Helpers\\CIMail_helper.php', 7)
+ 2 APPPATH\Helpers\CIMail_helper.php(7): require()
+ 3 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:22:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-03-27 07:22:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:22:30 --> ErrorException: require(PHPMailer/src/Exception.php): Failed to open stream: No such file or directory
+in APPPATH\Helpers\CIMail_helper.php on line 7.
+ 1 APPPATH\Helpers\CIMail_helper.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(PHPMailer/src/Exception.php): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\mypine-electrica\\app\\Helpers\\CIMail_helper.php', 7)
+ 2 APPPATH\Helpers\CIMail_helper.php(7): require()
+ 3 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:28:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:28:02 --> PHPMailer\PHPMailer\Exception: Invalid address:  (From): http://localhost:8080
+in FCPATH\PHPMailer\src\PHPMailer.php on line 1331.
+ 1 APPPATH\Helpers\CIMail_helper.php(20): PHPMailer\PHPMailer\PHPMailer->setFrom('http://localhost:8080', 'mypine-electrica')
+ 2 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:36:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:36:54 --> PHPMailer\PHPMailer\Exception: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+in FCPATH\PHPMailer\src\PHPMailer.php on line 2286.
+ 1 FCPATH\PHPMailer\src\PHPMailer.php(2062): PHPMailer\PHPMailer\PHPMailer->smtpConnect([])
+ 2 FCPATH\PHPMailer\src\PHPMailer.php(1689): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Wed, 27 Mar 2024 07:36:43 +0000
+To: admin <admin@gmail.com>
+From: mypine-electrica <info@cia4blog.test>
+Subject: Reset Password
+Message-ID: <HoJMAzSwT3NIPe6aB1r3a1P0apmuLZzhqztppv0gAh4@localhost>
+X-Mailer: PHPMailer 6.9.1 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: text/html; charset=iso-8859-1
+
+', '<!-- DEBUG-VIEW START 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+<p>Dear admin</p>
+
+<p>
+    We are received a request to reset password for mypine accout associated with <i>admin@gmail.com</i>.
+    You can reset your password by clicking the button below:
+    <br /><br />
+    <a href="/admin/password/reset/fb2de85d68f9a5f5b34e40f009e7fdbb25788c2c7f2e9fa4d42cb7f70793d568073f7896bf92789152e9351176e164846d3d5c15d0830731f7890ac78db83eec33" style="color:#fff;border-color:#22bc66;border-style:solid;border-width:5px 10px;background-color:#22bc66;display:inline-block;text-decoration:none;border-radius:3px;box-shadow:0 2px 3px rgba(0,0,0,0.16);-webkit-text-size-adjust:none;box-sizing:border-box;" target="_black" >Reset password</a>
+    <br /><br/>
+    <b>NB:</b>This link will valid within 15 minutes.
+    <br/> <br/>
+    If you did not request for password reset, please ignore this email.
+</p>
+<!-- DEBUG-VIEW ENDED 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+')
+ 3 FCPATH\PHPMailer\src\PHPMailer.php(1523): PHPMailer\PHPMailer\PHPMailer->postSend()
+ 4 APPPATH\Helpers\CIMail_helper.php(25): PHPMailer\PHPMailer\PHPMailer->send()
+ 5 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:39:34 --> PHPMailer\PHPMailer\Exception: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+in FCPATH\PHPMailer\src\PHPMailer.php on line 2286.
+ 1 FCPATH\PHPMailer\src\PHPMailer.php(2062): PHPMailer\PHPMailer\PHPMailer->smtpConnect([])
+ 2 FCPATH\PHPMailer\src\PHPMailer.php(1689): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Wed, 27 Mar 2024 07:39:23 +0000
+To: admin <admin@gmail.com>
+From: mypine-electrica <info@cia4blog.test>
+Subject: Reset Password
+Message-ID: <iPceLQurSm1ulDXXSHDDRhaxMARNonqcRLNdRlFlI@localhost>
+X-Mailer: PHPMailer 6.9.1 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: text/html; charset=iso-8859-1
+
+', '<!-- DEBUG-VIEW START 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+<p>Dear admin</p>
+
+<p>
+    We are received a request to reset password for mypine accout associated with <i>admin@gmail.com</i>.
+    You can reset your password by clicking the button below:
+    <br /><br />
+    <a href="/admin/password/reset/8a6abcbc40e9409f53fa2f4408ccc329fc0da410770cb717b244c71a1e1814db6fd068fc38e322f0564ca9d9e0ad1ab8c42a3498a993ebc9c5fa04ec24346578ff" style="color:#fff;border-color:#22bc66;border-style:solid;border-width:5px 10px;background-color:#22bc66;display:inline-block;text-decoration:none;border-radius:3px;box-shadow:0 2px 3px rgba(0,0,0,0.16);-webkit-text-size-adjust:none;box-sizing:border-box;" target="_black" >Reset password</a>
+    <br /><br/>
+    <b>NB:</b>This link will valid within 15 minutes.
+    <br/> <br/>
+    If you did not request for password reset, please ignore this email.
+</p>
+<!-- DEBUG-VIEW ENDED 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+')
+ 3 FCPATH\PHPMailer\src\PHPMailer.php(1523): PHPMailer\PHPMailer\PHPMailer->postSend()
+ 4 APPPATH\Helpers\CIMail_helper.php(25): PHPMailer\PHPMailer\PHPMailer->send()
+ 5 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:42:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:42:38 --> PHPMailer\PHPMailer\Exception: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+in FCPATH\PHPMailer\src\PHPMailer.php on line 2286.
+ 1 FCPATH\PHPMailer\src\PHPMailer.php(2062): PHPMailer\PHPMailer\PHPMailer->smtpConnect([])
+ 2 FCPATH\PHPMailer\src\PHPMailer.php(1689): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Wed, 27 Mar 2024 07:42:27 +0000
+To: admin <admin@gmail.com>
+From: mypine-electrica <info@cia4blog.test>
+Subject: Reset Password
+Message-ID: <7QkB94557iNtn4I8VZL4ziGxRmlO98A21az1mW8@localhost>
+X-Mailer: PHPMailer 6.9.1 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: text/html; charset=iso-8859-1
+
+', '<!-- DEBUG-VIEW START 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+<p>Dear admin</p>
+
+<p>
+    We are received a request to reset password for mypine accout associated with <i>admin@gmail.com</i>.
+    You can reset your password by clicking the button below:
+    <br /><br />
+    <a href="/admin/password/reset/b6618af0c61a56ca49abecc28e01e2665180fb1e7d01341fb1a8904b113a4b2e15afb81e49f703a88c49b943a86ebdd1935bf6df3561f7fd417111d46a60c66c01" style="color:#fff;border-color:#22bc66;border-style:solid;border-width:5px 10px;background-color:#22bc66;display:inline-block;text-decoration:none;border-radius:3px;box-shadow:0 2px 3px rgba(0,0,0,0.16);-webkit-text-size-adjust:none;box-sizing:border-box;" target="_black" >Reset password</a>
+    <br /><br/>
+    <b>NB:</b>This link will valid within 15 minutes.
+    <br/> <br/>
+    If you did not request for password reset, please ignore this email.
+</p>
+<!-- DEBUG-VIEW ENDED 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+')
+ 3 FCPATH\PHPMailer\src\PHPMailer.php(1523): PHPMailer\PHPMailer\PHPMailer->postSend()
+ 4 APPPATH\Helpers\CIMail_helper.php(25): PHPMailer\PHPMailer\PHPMailer->send()
+ 5 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:43:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:43:39 --> PHPMailer\PHPMailer\Exception: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+in FCPATH\PHPMailer\src\PHPMailer.php on line 2286.
+ 1 FCPATH\PHPMailer\src\PHPMailer.php(2062): PHPMailer\PHPMailer\PHPMailer->smtpConnect([])
+ 2 FCPATH\PHPMailer\src\PHPMailer.php(1689): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Wed, 27 Mar 2024 07:43:27 +0000
+To: admin <admin@gmail.com>
+From: CI4Blog <info@cia4blog.test>
+Subject: Reset Password
+Message-ID: <mEk9aV7nvWhqtEctsr6FvZON1rrTuqq6clnQlUp7fk@localhost>
+X-Mailer: PHPMailer 6.9.1 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: text/html; charset=iso-8859-1
+
+', '<!-- DEBUG-VIEW START 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+<p>Dear admin</p>
+
+<p>
+    We are received a request to reset password for mypine accout associated with <i>admin@gmail.com</i>.
+    You can reset your password by clicking the button below:
+    <br /><br />
+    <a href="/admin/password/reset/7c5350bdb23b0f2bb4e902f408e59b16e6994fafdaab0539cb6852957eeec4fe50b813fda9cab63b343a1f008143c1dcc9bbe1149c87526b97293285db7987838e" style="color:#fff;border-color:#22bc66;border-style:solid;border-width:5px 10px;background-color:#22bc66;display:inline-block;text-decoration:none;border-radius:3px;box-shadow:0 2px 3px rgba(0,0,0,0.16);-webkit-text-size-adjust:none;box-sizing:border-box;" target="_black" >Reset password</a>
+    <br /><br/>
+    <b>NB:</b>This link will valid within 15 minutes.
+    <br/> <br/>
+    If you did not request for password reset, please ignore this email.
+</p>
+<!-- DEBUG-VIEW ENDED 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+')
+ 3 FCPATH\PHPMailer\src\PHPMailer.php(1523): PHPMailer\PHPMailer\PHPMailer->postSend()
+ 4 APPPATH\Helpers\CIMail_helper.php(25): PHPMailer\PHPMailer\PHPMailer->send()
+ 5 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:46:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:46:20 --> PHPMailer\PHPMailer\Exception: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+in FCPATH\PHPMailer\src\PHPMailer.php on line 2286.
+ 1 FCPATH\PHPMailer\src\PHPMailer.php(2062): PHPMailer\PHPMailer\PHPMailer->smtpConnect([])
+ 2 FCPATH\PHPMailer\src\PHPMailer.php(1689): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Wed, 27 Mar 2024 07:46:09 +0000
+To: admin <admin@gmail.com>
+From: CI4Blog <info@cia4blog.test>
+Subject: Reset Password
+Message-ID: <a84W7Qz1v3F9a2yidcYkg1IaCHf4E7brB04htgjtiI@localhost>
+X-Mailer: PHPMailer 6.9.1 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: text/html; charset=iso-8859-1
+
+', '<!-- DEBUG-VIEW START 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+<p>Dear admin</p>
+
+<p>
+    We are received a request to reset password for mypine accout associated with <i>admin@gmail.com</i>.
+    You can reset your password by clicking the button below:
+    <br /><br />
+    <a href="/admin/password/reset/827e6a81cb4b44602c20989273a5c4c5032ce162b3bfc3085015fadbd0ae55167855dddf7d9b6c99e812033d75f1838eb6800a8901bcc10437b8f2f957539aef07" style="color:#fff;border-color:#22bc66;border-style:solid;border-width:5px 10px;background-color:#22bc66;display:inline-block;text-decoration:none;border-radius:3px;box-shadow:0 2px 3px rgba(0,0,0,0.16);-webkit-text-size-adjust:none;box-sizing:border-box;" target="_black" >Reset password</a>
+    <br /><br/>
+    <b>NB:</b>This link will valid within 15 minutes.
+    <br/> <br/>
+    If you did not request for password reset, please ignore this email.
+</p>
+<!-- DEBUG-VIEW ENDED 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+')
+ 3 FCPATH\PHPMailer\src\PHPMailer.php(1523): PHPMailer\PHPMailer\PHPMailer->postSend()
+ 4 APPPATH\Helpers\CIMail_helper.php(25): PHPMailer\PHPMailer\PHPMailer->send()
+ 5 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:55:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:55:59 --> ErrorException: require(/vendor/phpmailer/phpmailer/src/Exception.php): Failed to open stream: No such file or directory
+in APPPATH\Helpers\CIMail_helper.php on line 7.
+ 1 APPPATH\Helpers\CIMail_helper.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(/vendor/phpmailer/phpmailer/src/Exception.php): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\mypine-electrica\\app\\Helpers\\CIMail_helper.php', 7)
+ 2 APPPATH\Helpers\CIMail_helper.php(7): require()
+ 3 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 07:56:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 07:56:48 --> ErrorException: require(C:\xampp\htdocs\mypine-electrica\public/vendor/phpmailer/phpmailer/src/OAuth.php): Failed to open stream: No such file or directory
+in APPPATH\Helpers\CIMail_helper.php on line 7.
+ 1 APPPATH\Helpers\CIMail_helper.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'require(C:\\xampp\\htdocs\\mypine-electrica\\public/vendor/phpmailer/phpmailer/src/OAuth.php): Failed to open stream: No such file or directory', 'C:\\xampp\\htdocs\\mypine-electrica\\app\\Helpers\\CIMail_helper.php', 7)
+ 2 APPPATH\Helpers\CIMail_helper.php(7): require()
+ 3 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 08:03:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 08:03:14 --> Error: Call to undefined function App\Controllers\sendEmail()
+in APPPATH\Controllers\AuthController.php on line 157.
+ 1 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 08:03:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 08:03:35 --> ArgumentCountError: Too few arguments to function sendEmail(), 1 passed in C:\xampp\htdocs\mypine-electrica\app\Controllers\AuthController.php on line 157 and exactly 3 expected
+in APPPATH\Helpers\CIMail_helper.php on line 33.
+ 1 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-03-27 08:11:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-03-27 08:12:04 --> PHPMailer\PHPMailer\Exception: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+in FCPATH\PHPMailer\src\PHPMailer.php on line 2286.
+ 1 FCPATH\PHPMailer\src\PHPMailer.php(2062): PHPMailer\PHPMailer\PHPMailer->smtpConnect([])
+ 2 FCPATH\PHPMailer\src\PHPMailer.php(1689): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Wed, 27 Mar 2024 08:11:52 +0000
+To: admin <admin@gmail.com>
+From: CI4Blog <jairocascaretrodriguez@gmail.com>
+Subject: Reset Password
+Message-ID: <fu2Jdes5n21V8jvDC1vPvjcUortQqhfGGNea9x6iSY@localhost>
+X-Mailer: PHPMailer 6.9.1 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: text/html; charset=iso-8859-1
+
+', '<!-- DEBUG-VIEW START 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+<p>Dear admin</p>
+
+<p>
+    We are received a request to reset password for mypine accout associated with <i>admin@gmail.com</i>.
+    You can reset your password by clicking the button below:
+    <br /><br />
+    <a href="/admin/password/reset/eb66db4cb44f93e9bf774e80dd9a8f5d4af17d5345dacf2546a7e5adbee5ebca83ddc96178b41c80a43c45b8de74ae8690a89356490e324f2cbd6a6023b7cd915a" style="color:#fff;border-color:#22bc66;border-style:solid;border-width:5px 10px;background-color:#22bc66;display:inline-block;text-decoration:none;border-radius:3px;box-shadow:0 2px 3px rgba(0,0,0,0.16);-webkit-text-size-adjust:none;box-sizing:border-box;" target="_black" >Reset password</a>
+    <br /><br/>
+    <b>NB:</b>This link will valid within 15 minutes.
+    <br/> <br/>
+    If you did not request for password reset, please ignore this email.
+</p>
+<!-- DEBUG-VIEW ENDED 1 APPPATH\\Views\\email-templates\\forgot-email-template.php -->
+')
+ 3 FCPATH\PHPMailer\src\PHPMailer.php(1523): PHPMailer\PHPMailer\PHPMailer->postSend()
+ 4 APPPATH\Helpers\CIMail_helper.php(25): PHPMailer\PHPMailer\PHPMailer->send()
+ 5 APPPATH\Controllers\AuthController.php(157): sendEmail([...])
+ 6 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AuthController->sendPasswordReset()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
