@@ -119,14 +119,17 @@ class AdminController extends BaseController
     }
     public function changePassword()
     {
+        
         $request   = \Config\Services::request();
 
         if ($request->isAJAX() ) {
+            
             $validation = \Config\Services::validation();
             $user_id   = CIAuth::id();
             $user      = new User();
             $user_info = $user->asObject()->where('id',$user_id)->first();
 
+            
             $this->validate([
                 'current_password'=>[
                     'rules'=>'required|min_length[5]|check_current_password[current_password]',
@@ -137,11 +140,12 @@ class AdminController extends BaseController
                     ],
                 ],
                 'new_password'=>[
-                    'rules'=>'required|min_length[5]|max_length[20]|is_password_strong[new_password]',
+                    'rules'=>'required|min_length[5]|max_length[20]',
                     'errors'=>[
                         'required'=>'Introdusca la contraseña',
                         'min_length'=>'Debe de tener al menos 5 caracteres',
-                        'is_password_strong'=>'La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial.',
+                        'max_length'=>'Debe de tener maximo 20 caracteres',
+                        // 'is_password_strong'=>'La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial.',
                     ],
                 ],
                 'confirm_new_password'=>[
@@ -152,39 +156,54 @@ class AdminController extends BaseController
                     ],
                 ],
             ]);
-            if ($validation->run() === FALSE ) {
+
+            
+            if ($validation->run()===FALSE ) {
+                
                 $errors = $validation->getErrors();
+                // return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'error'=>$errors]);
                 return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'error'=>$errors]);
-
             } else {
-                return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'Good']);
+                
+            //     return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'Good']);
+            //     //actualizando user(admin) password in DB
+                $user->where('id',$user_info->id)->set(['password'=>Hash::make($request->getVar('new_password'))])->update();
 
-                //actualizando user(admin) password in DB
-                //$user->where('id',$user_info->id)->set(['password'=>Hash::make($request->getVar('new_password'))])->update();
+                return $this->response->setJSON(['status'=>1, 'token'=>csrf_hash(), 'msg'=>'Good']);
 
-                //Enviadon una notificacion al usuario (admin) por email
-                /*$mail_data = array(
-                    'user'=>$user_info,
-                    'new_password'=>$request->getVar('new_password')
-                );
+                
 
-                $view = \Config\Services::renderer();
-                $mail_body = $this->setVar('mail_data',$mail_data)->render('email-templates/password-changed-email-template');
+            //     //Enviadon una notificacion al usuario (admin) por email
+            //     /*$mail_data = array(
+            //         'user'=>$user_info,
+            //         'new_password'=>$request->getVar('new_password')
+            //     );
 
-                $mailConfig = array(
-                    'mail_from_email'=>env('EMAIL_FROM_ADDRESS'),
-                    'mail_from_name'=>env('EMAIL_FROM_NAME'),
-                    'mail_recipient_email'=>$user_info->email,
-                    'mail_recipient_name'=>$user_info->name,
-                    'mail_subject'=>'Password Changed',
-                    'mail_body'=>$mail_body
-                );
+            //     $view = \Config\Services::renderer();
+            //     $mail_body = $this->setVar('mail_data',$mail_data)->render('email-templates/password-changed-email-template');
 
-                sendEmail($mailConfig);
-                return $this->responde->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'Done! Your password has been successfully updated']);*/
+            //     $mailConfig = array(
+            //         'mail_from_email'=>env('EMAIL_FROM_ADDRESS'),
+            //         'mail_from_name'=>env('EMAIL_FROM_NAME'),
+            //         'mail_recipient_email'=>$user_info->email,
+            //         'mail_recipient_name'=>$user_info->name,
+            //         'mail_subject'=>'Password Changed',
+            //         'mail_body'=>$mail_body
+            //     );
+
+            //     sendEmail($mailConfig);
+            //     return $this->responde->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'Done! Your password has been successfully updated']);*/
 
             }
             
         }
+    }
+    public function settings()
+    {
+        $data = [
+            'pageTitle'=>'Settings',
+
+        ];
+        return view('backend/pages/settings',$data);
     }
 }

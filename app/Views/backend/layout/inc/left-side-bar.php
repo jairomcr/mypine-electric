@@ -56,12 +56,12 @@
 						</li>
 						<li>
 							<a
-								href=""
+								href="<?= route_to('settings'); ?>"
 								class="dropdown-toggle no-arrow"
 							>
 								<span class="micon dw dw-settings"></span>
 								<span class="mtext">
-									General
+									Settings
 								</span>
 							</a>
 						</li>

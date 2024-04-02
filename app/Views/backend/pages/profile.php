@@ -60,21 +60,21 @@
                                         <div class="col-md-6">
                                             <div class="form-group" >
                                                 <label for="">Nombre</label>
-                                                <input type="text" name="name" id="" class="form-control" placeholder="Nombre...." value="<?= get_user()->name ?>">
+                                                <input type="text" name="name"  class="form-control" placeholder="Nombre...." value="<?= get_user()->name ?>">
                                                 <span class="text-danger error-text name_error" ></span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group" >
                                                 <label for="">Nombre de Usuario</label>
-                                                <input type="text" name="username" id="" class="form-control" placeholder="Nombre de Usuario.." value="<?= get_user()->username ?>">
+                                                <input type="text" name="username"  class="form-control" placeholder="Nombre de Usuario.." value="<?= get_user()->username ?>">
                                                 <span class="text-danger error-text username_error" ></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Bio</label>
-                                        <textarea name="bio" id="" cols="30" rows="10" class="form-control" placeholder="Bio....." value="<?= get_user()->bio ?>"></textarea>
+                                        <textarea name="bio"  cols="30" rows="10" class="form-control" placeholder="Bio....." value="<?= get_user()->bio ?>"></textarea>
                                         <span class="text-danger error-text bio_error" ></span>
                                     </div>
                                     <div class="form-group">
@@ -212,8 +212,10 @@
                         if (response.status == 1) {
                             $(form)[0].reset();
                             //toastr.success(response.msg);
+                            alert(response.msg);
                         } else {
                             //toastr.error(response.msg);
+                            alert(response.msg);
                         }
                     } else {
                         $.each(response.error,function(prefix, val){
