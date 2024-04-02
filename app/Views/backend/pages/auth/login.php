@@ -51,6 +51,11 @@
                                         name="password"
                                         value="<?= set_value('password') ?>"
 									/>
+									<div class="input-group-append custom">
+										<span class="input-group-text"
+											><i class="dw dw-padlock1"></i
+										></span>
+									</div>
 								</div>
                                 <?php if ($validation->getError('password')) : ?>
                                      <div class="d-block text-danger" style="margin-top:25px;margin-bottom:15px;" >

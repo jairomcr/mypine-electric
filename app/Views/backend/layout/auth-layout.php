@@ -73,8 +73,6 @@
 				</div>
 			</div>
 		</div>
-		
-		
 		<!-- js -->
 		<script src="/backend/vendors/scripts/core.js"></script>
 		<script src="/backend/vendors/scripts/script.min.js"></script>

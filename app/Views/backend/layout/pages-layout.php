@@ -43,6 +43,7 @@
 			href="/backend/vendors/styles/icon-font.min.css"
 		/>
 		<link rel="stylesheet" type="text/css" href="/backend/vendors/styles/style.css" />
+		<link rel="stylesheet" href="<?= base_url('/extra-assets/ijaboCropTool/ijaboCropTool.min.css') ?>">
 
 		<?= $this->renderSection('stylesheets'); ?>
 	</head>
@@ -65,14 +66,12 @@
 		<?php include('inc/right-sidebar.php'); ?>
 
         <?php include('inc/left-side-bar.php'); ?>
-
 		
 		<div class="mobile-menu-overlay"></div>
 
 		<div class="main-container">
 			<div class="pd-ltr-20 xs-pd-20-10">
 				<div class="min-height-200px">
-					
 					<div>
                         <?= $this->renderSection('content') ?>
                     </div>
@@ -80,12 +79,12 @@
 				<?= include('inc/footer.php') ?>
 			</div>
 		</div>
-
 		<!-- js -->
 		<script src="/backend/vendors/scripts/core.js"></script>
 		<script src="/backend/vendors/scripts/script.min.js"></script>
 		<script src="/backend/vendors/scripts/process.js"></script>
 		<script src="/backend/vendors/scripts/layout-settings.js"></script>
-        <?= $this->renderSection('scprits') ?>
+		<script src="<?= base_url('/extra-assets/ijaboCropTool/ijaboCropTool.min.js') ?>"></script>
+		        <?= $this->renderSection('scprits') ?>
 	</body>
 </html>

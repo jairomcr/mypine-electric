@@ -13,7 +13,7 @@ use Carbon\Carbon;
 class AuthController extends BaseController
 {
 
-    protected $helpers = ['url', 'form','CIMail'];
+    protected $helpers = ['url', 'form','CIMail','CIFunctions'];
 
     public function loginFrom()
     {
@@ -135,7 +135,8 @@ class AuthController extends BaseController
                 ]);
             }
 
-            $actionLink = route_to('admin.reset-password',$token);
+            //$actionLink = route_to('admin.reset-password',$token);
+            $actionLink = base_url(route_to('admin.reset-password',$token));
 
             $mail_data = array(
                 'actionLink'=>$actionLink,
@@ -158,6 +159,96 @@ class AuthController extends BaseController
                 return redirect()->route('admin.forgot.form')->with('success','Se ha restablecido su contraseña');
             } else {
                 return redirect()->route('admin.forgot.form')->with('fail','No se apododo restablecer su contraseña');
+            }
+        }
+    }
+    public function resetPassword($token)
+    {
+        $passwordResetPassword = new PasswordResetToken();
+        $check_token = $passwordResetPassword->asObject()->where('token',$token)->first();
+
+        if ($check_token) {
+            return redirect()->route('admin.forgot.form')->with('fail','Invalid token. Request another reset password link');
+        } else {
+            $diffMins = Carbon::createFromFormat('Y-m-d H:i:s',$check_token->create_at)->diffInMinutes(Carbon::now());
+
+            if ($diffMins > 15) {
+                return redirect()->route('admin.forgot.form')->with('fail','Token expired. Request another reset password link.');
+            } else {
+                return view('backend/pages/auth/reset',[
+                    'pageTitle'=>'Resetear contraseña',
+                    'validation'=>null,
+                    'token'=>$token,
+                ]);
+            }
+            
+        }
+    }
+    public function resetPasswordHandler($token)
+    {
+        $isValid = $this->validation([
+            'new_password'=>[
+                'rules'=>'required|min_length[5]|max_length[20]|is_password_strong[new_password]',
+                'errors'=>[
+                    'required'=>'Enter new password',
+                    'min_length'=>'New password must have atleast mininum of 5 characters.',
+                    'max_length'=>'New password must have atleast maximum of 20 characters.',
+                    'is_password_strong'=>'New password must contains atleast 1 uppercase, 1 lowercase,1 number and 1 special character.',
+                ]
+            ],
+            'confirm_new_password'=>[
+                'rules'=>'required|matches[new_password]',
+                'errors'=>[
+                    'required'=>'Confirm new password',
+                    'matches'=>'Password not matches',
+                ]
+            ],
+        ]);
+        if (!$isValid) {
+            return view('backend/pages/auth/reset',[
+                'pageTitle'=>'Reset password',
+                'validation'=>null,
+                'token'=>$token,
+            ]);
+        } else {
+            //Detalles del token
+            $passwordResetPassword = new PasswordResetToken();
+            $get_token = $passwordResetPassword->asObject()->where('token',$token)->first();
+
+            //Detalles del usuario (admin)
+            if (!$get_token) {
+                return redirect()->back()->with('fail','Invalid token')->withInput();
+            }else {
+                //Actualizando la contraseña de  admin en DB
+                $user->where('email',$user_info->email)->set(['password'=>Hash::make($this->request->getVar('new_password'))])->update();
+
+                //Enviadon una notificacion al usuario (admin) por email
+                $mail_data = array(
+                    'user'=>$user_info,
+                    'new_password'=>$this->request->getVar('new_password')
+                );
+
+                $view = \Config\Services::renderer();
+                $mail_body = $this->setVar('mail_data',$mail_data)->render('email-templates/password-changed-email-template');
+
+                $mailConfig = array(
+                    'mail_from_email'=>env('EMAIL_FROM_ADDRESS'),
+                    'mail_from_name'=>env('EMAIL_FROM_NAME'),
+                    'mail_recipient_email'=>$user_info->email,
+                    'mail_recipient_name'=>$user_info->name,
+                    'mail_subject'=>'Password Changed',
+                    'mail_body'=>$mail_body
+                );
+                if (sendEmail($mailConfig)) {
+                    //Eliminar token
+                    $passwordResetPassword->where('email',$user_info->email)->delete();
+
+                    //Redireccionando el mensaje a la pagina del login
+                    return redirect()->route('admin.login.form')->with('success','Dane!, your password has been change. Use new password to login into system.');
+
+                }else {
+                    return redirect()->back()->with('fail','Something went wrong')->withInput();
+                }
             }
         }
     }
