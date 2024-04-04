@@ -132,6 +132,7 @@
         $('#personal_details_from').on('submit',function(e){
             e.preventDefault();
             //alert('sumbit');
+            
             var form = this;
             var formdata = new FormData(form);
 

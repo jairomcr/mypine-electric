@@ -7,6 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use App\Libraries\CIAuth;
 use App\Models\User;
 use App\Libraries\Hash;
+use App\Models\Settings;
 
 class AdminController extends BaseController
 {
@@ -140,12 +141,12 @@ class AdminController extends BaseController
                     ],
                 ],
                 'new_password'=>[
-                    'rules'=>'required|min_length[5]|max_length[20]',
+                    'rules'=>'required|min_length[5]|max_length[20]|is_strong_password[new_password]',
                     'errors'=>[
                         'required'=>'Introdusca la contraseña',
                         'min_length'=>'Debe de tener al menos 5 caracteres',
                         'max_length'=>'Debe de tener maximo 20 caracteres',
-                        // 'is_password_strong'=>'La contraseña debe contener al menos 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial.',
+                        'is_strong_password'=>'La contraseña debe contener al menos 8 caracteres,1 letra mayúscula, 1 minúscula, 1 número y 1 carácter especial.',
                     ],
                 ],
                 'confirm_new_password'=>[
@@ -205,5 +206,83 @@ class AdminController extends BaseController
 
         ];
         return view('backend/pages/settings',$data);
+    }
+    public function updateGeneralSettings()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+
+            $validation = \Config\Services::validation();
+
+            $this->validate([
+                'blog_title'=>[
+                   'rules'=>'required',
+                   'errors'=>[
+                     'required'=>'Introduce el titulo',
+                    ],
+                ],
+                'blog_email'=>[
+                    'rules'=>'required|valid_email',
+                    'errors'=>[
+                      'required'=>'Introduce el titulo',
+                      'valid_email'=>'Introduce un correo valido. Eje: info@gmail.com',
+                    ],
+                ],
+            ]);
+            if ($validation->run()=== FALSE ) {
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'error'=>$errors]);
+            } else {
+                $settings = new Settings();
+                $settings_id = $settings->asObject()->first()->id;
+                $update = $settings->where('id',$settings_id)->set([
+                    'blog_title'=>$request->getVar('blog_title'),
+                    'blog_email'=>$request->getVar('blog_email'),
+                    'blog_phone'=>$request->getVar('blog_phone'),
+                    'blog_meta_keywords'=>$request->getVar('blog_meta_keywords'),
+                    'blog_meta_description'=>$request->getVar('blog_meta_description'),
+                ])->update();
+
+                if ($update) {
+                    return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'SuccessFully']);
+                    
+                } else {
+                    return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong']);
+                }
+                
+            }
+            
+        }
+        
+    }
+    public function updateBlogLogo()
+    {
+        $request = \Config\Services::request();
+        
+        if ($request->isAJAX()) {
+            $settings = new Settings;
+            $path = 'img/';
+
+            $file = $request->getFile('blog_logo');
+            $settings_data = $settings->asObject()->first();
+            $old_blog_logo = $settings_data->blog_logo;
+            $new_filename = 'Servicios_electricos'.$file->getRandomName();
+
+            if ($file->move($path, $new_filename)) {
+                if ($old_blog_logo != null && file_exists($path.$old_blog_logo) ) {
+                    unlink($path.$old_blog_logo);
+                }
+                $update = $settings->where('id',$settings_data->id)->set(['blog_logo'=>$new_filename])->update();
+                
+                if ($update) {
+                    return $this->response->setJSON(['status'=>1, 'token'=>csrf_hash(), 'msg'=>'Done!']);
+                } else {
+                    return $this->response->setJSON(['status'=>1, 'token'=>csrf_hash(), 'msg'=>'Something went wrong on updating new logo info.']);
+                }
+            } else {
+                return $this->response->setJSON(['status'=>0, 'token'=>csrf_hash(), 'msg'=>'Something went wrong on uploading new logo.']);
+            }
+        }
     }
 }
