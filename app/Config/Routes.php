@@ -19,7 +19,8 @@ $routes->group('admin',static function($routes){
      $routes->get('settings','AdminController::settings',['as'=>'settings']);
      $routes->post('update-general-settings','AdminController::updateGeneralSettings',['as'=>'update-general-settings']);
      $routes->post('update-blog-logo','AdminController::updateBlogLogo',['as'=>'update-blog-logo']);
-
+     $routes->post('update-blog-favicon','AdminController::updateBlogFavicon',['as'=>'update-blog-favicon']);
+     $routes->post('update-social-media','AdminController::updateSocialMedia',['as'=>'update-social-media']);   
    });
    $routes->group('',['filter'=>'cifilter:guest'],static function($routes){
      //$routes->view('example-auth','example-auth');

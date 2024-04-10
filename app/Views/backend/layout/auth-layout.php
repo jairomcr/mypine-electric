@@ -7,21 +7,10 @@
 
 		<!-- Site favicon -->
 		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="/backend/vendors/images/apple-touch-icon.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="/backend/vendors/images/favicon-32x32.png"
-		/>
-		<link
 			rel="icon"
 			type="image/png"
 			sizes="16x16"
-			href="/backend/vendors/images/favicon-16x16.png"
+			href="/img/blog/<?= get_settings()->blog_favicon ?>"
 		/>
 
 		<!-- Mobile Specific Metas -->
@@ -52,8 +41,8 @@
 				class="container-fluid d-flex justify-content-between align-items-center"
 			>
 				<div class="brand-logo">
-					<a href="login.html">
-						<img src="/backend/vendors/images/deskapp-logo.svg" alt="" />
+					<a href="/">
+						<img src="/img/logo/<?= get_settings()->blog_logo ?>" alt="" />
 					</a>
 				</div>
 				

@@ -8,6 +8,7 @@ use App\Libraries\CIAuth;
 use App\Models\User;
 use App\Libraries\Hash;
 use App\Models\Settings;
+use App\Models\SocialMedia;
 
 class AdminController extends BaseController
 {
@@ -262,7 +263,7 @@ class AdminController extends BaseController
         
         if ($request->isAJAX()) {
             $settings = new Settings;
-            $path = 'img/';
+            $path = 'img/logo/';
 
             $file = $request->getFile('blog_logo');
             $settings_data = $settings->asObject()->first();
@@ -278,10 +279,109 @@ class AdminController extends BaseController
                 if ($update) {
                     return $this->response->setJSON(['status'=>1, 'token'=>csrf_hash(), 'msg'=>'Done!']);
                 } else {
-                    return $this->response->setJSON(['status'=>1, 'token'=>csrf_hash(), 'msg'=>'Something went wrong on updating new logo info.']);
+                    return $this->response->setJSON(['status'=>0, 'token'=>csrf_hash(), 'msg'=>'Something went wrong on updating new logo info.']);
                 }
             } else {
                 return $this->response->setJSON(['status'=>0, 'token'=>csrf_hash(), 'msg'=>'Something went wrong on uploading new logo.']);
+            }
+        }
+    }
+    public function updateBlogFavicon()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $settings = new Settings();
+            $path = 'img/blog/';
+            $file = $request->getFile('blog_favicon');
+            $settings_data = $settings->asObject()->first();
+            $old_blog_favicon = $settings_data->blog_favicon;
+            $new_filename = 'Favicon_'.$file->getRandomName();
+
+            if ($file->move($path, $new_filename) ) {
+                if ($old_blog_favicon != null && file_exists($path.$old_blog_favicon) ) {
+                    unlink($path.$old_blog_favicon);
+                }
+                $update = $settings->where('id',$settings_data->id)->set(['blog_favicon'=>$new_filename])->update();
+
+                if ($update) {
+                    return $this->response->setJSON(['status'=>1, 'token'=>csrf_hash(), 'msg'=>'Done!']);
+                } else {
+                    return $this->response->setJSON(['status'=>0, 'token'=>csrf_hash(), 'msg'=>'Something went wrong on updating new blog favicon.']);
+                }
+
+            } else {
+                return $this->response->setJSON(['status'=>0, 'token'=>csrf_hash(), 'msg'=>'Something went wrong on uploading new  blog favicon file.']);
+            }
+            
+
+        }
+    }
+    public function updateSocialMedia()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $validation = \Config\Services::validation();
+            $this->validate([
+                'facebook_url'=>[
+                    'rules'=>'permit_empty|valid_url_strict',
+                    'errors'=>[
+                        'valid_url_strict'=>'Invalid facebook page URL'
+                    ],
+                ],
+                'twitter_url'=>[
+                    'rules'=>'permit_empty|valid_url_strict',
+                    'errors'=>[
+                        'valid_url_strict'=>'Invalid twitter page URL'
+                    ],
+                ],
+                'instagram_url'=>[
+                    'rules'=>'permit_empty|valid_url_strict',
+                    'errors'=>[
+                        'valid_url_strict'=>'Invalid instagram page URL'
+                    ],
+                ],
+                'youtube_url'=>[
+                    'rules'=>'permit_empty|valid_url_strict',
+                    'errors'=>[
+                        'valid_url_strict'=>'Invalid youtube page URL'
+                    ],
+                ],
+                'whatsapp_url'=>[
+                    'rules'=>'permit_empty|valid_url_strict',
+                    'errors'=>[
+                        'valid_url_strict'=>'Invalid whatsapp page URL'
+                    ],
+                ],
+                'linkedin_url'=>[
+                    'rules'=>'permit_empty|valid_url_strict',
+                    'errors'=>[
+                        'valid_url_strict'=>'Invalid linkedin page URL'
+                    ],
+                ],
+            ]);
+            if ($validation->run() === FALSE) {
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['status'=>0, 'token'=>csrf_hash(), 'error'=>$errors]);
+            } else {
+                $social_media = new SocialMedia();
+                $social_media_id=$social_media->asObject()->first()->id;
+                $update = $social_media->where('id',$social_media_id)->set([
+                    'facebook_url'=>$request->getVar('facebook_url'),
+                    'twitter_url'=>$request->getVar('twitter_url'),
+                    'instagram_url'=>$request->getVar('instagram_url'),
+                    'youtube_url'=>$request->getVar('youtube_url'),
+                    'whatsapp_url'=>$request->getVar('whatsapp_url'),
+                    'linkedin_url'=>$request->getVar('linkedin_url'),     
+                ])->update();
+
+                if ($update) {
+                    $user_info = $user->find($user_id);
+                    return json_encode(['status'=>1,'user_info'=>$user_info,'msg'=>'Done!']);
+                }else {
+                    return json_encode(['status'=>0,'msg'=>'Something went wrong.']);
+                }
             }
         }
     }

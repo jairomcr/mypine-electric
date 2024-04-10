@@ -95,7 +95,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h5>Logo de la Empresa</h5>
-                            <div class="mb2 mt-1" style="max: width 200px;">
+                            <div class="mb-2 mt-1" style="max: width 200px;">
                                 <img src="" alt="" class="img-thumbnail" id="logo-image-preview" data-ijabo-default-img="/img/<?= get_settings()->blog_logo ?>" >
                                 <form action="<?= route_to('update-blog-logo') ?>" method="post" enctype="multipart/form-data" id="changeBlogLogoForm" >
                                     <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" class="ci_csrf_data" >
@@ -108,14 +108,76 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-
+                            <h5>Set blog favicon</h5>
+                            <div class="mb-2 mt-1" style="max: width 100px;" >
+                                <img src="" alt="" class="img-thumbnail" id="favicon-image-preview" data-ijabo-default-img="/img/blog/<?= get_settings()->blog_favicon ?>">
+                                <form action="<?= route_to('update-blog-favicon') ?>" method="post" enctype="multipart/form-data" id="changeBlogFaviconForm" >
+                                    <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" class="ci_csrf_data" >
+                                    <div class="mb-2">
+                                        <input type="file" name="blog_favicon" class="form-control" >
+                                        <span class="text-danger error-text" ></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" >Guardar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="social_media" role="tabpanel">
                 <div class="pd-20">
-                    ------------Social media-----------------
+                    <form action="<?= route_to('update-social-media') ?>" method="post" id="social_media_form">
+                        <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" class="ci_csrf_data" >
+                        <div class="row" >
+                            <div class="col-md-4" >
+                                <div class="form-group" >
+                                    <label for="">Facebook URL</label>
+                                    <input type="text" name="facebook_url" class="form-control" placeholder="Enter facebook page URL" value="<?= get_social_media()->facebook_url ?>" >
+                                    <span class="text-danger error-text facebook_url_error "></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4" >
+                                <div class="form-group" >
+                                    <label for="">Twitter URL</label>
+                                    <input type="text" name="twitter_url" class="form-control" placeholder="Enter twitter page URL" value="<?= get_social_media()->twitter_url ?>" >
+                                    <span class="text-danger error-text twitter_url_error "></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4" >
+                                <div class="form-group" >
+                                    <label for="">Instagram URL</label>
+                                    <input type="text" name="instagram_url" class="form-control" placeholder="Enter instagram page URL" value="<?= get_social_media()->instagram_url ?>" >
+                                    <span class="text-danger error-text instagram_url_error "></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-4" >
+                                <div class="form-group" >
+                                    <label for="">Youtube URL</label>
+                                    <input type="text" name="youtube_url" class="form-control" placeholder="Enter youtube page URL" value="<?= get_social_media()->youtube_url ?>" >
+                                    <span class="text-danger error-text youtube_url_error "></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4" >
+                                <div class="form-group" >
+                                    <label for="">Whatsapp URL</label>
+                                    <input type="text" name="whatsapp_url" class="form-control" placeholder="Enter whatsapp page URL" value="<?= get_social_media()->whatsapp_url ?>" >
+                                    <span class="text-danger error-text whatsapp_url_error "></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4" >
+                                <div class="form-group" >
+                                    <label for="">Linkedin URL</label>
+                                    <input type="text" name="linkedin_url" class="form-control" placeholder="Enter linkedin page URL" value="<?= get_social_media()->linkedin_url ?>" >
+                                    <span class="text-danger error-text linkedin_url_error "></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" >Guardar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -222,5 +284,104 @@ $('#changeBlogLogoForm').on('submit',function(e){
     }
 
 });
+/*$('input[type="file"][name="blog_favicon"]').ijaboViewer({
+    preview:'#favicon-image-preview',
+    imageShape:'square',
+    allowedExtensions:['jpg','jpeg','png'],
+    onErrorShape:function(message,element){
+        alert(message);
+    }
+    /*onInvalidType:function(message,element){
+        alert(message);
+    },*/
+    /*onSuccess:function(message,element){
+
+    }
+});*/
+$('#changeBlogFaviconForm').on('submit',function(e){
+    e.preventDefault();
+
+    var csrfName = $('.ci_csrf_data').attr('name');
+    var csrfHash = $('.ci_csrf_data').val();
+    var form = this;
+    var formdata = new FormData(form);
+    formdata.append(csrfName, csrfHash);
+
+    var inputFileVal = $(form).find('input[type="file"][name="blog_favicon"]').val();
+
+    if (inputFileVal.length > 0) {
+
+        $.ajax({
+            url: $(form).attr('action'),
+            method:$(form).attr('method'),
+            data: formdata,
+            processData:false,
+            dataType: "json",
+            contentType:false,
+            beforeSend: function (response) {
+                //toastr.remove();
+                $(form).find('span.error-text').text('');
+            },
+            success: function(response) {
+
+               $('.ci_csrf_data').val(response.token);
+
+               if (response.status == 1) {
+                 //toastr.success(response.msg);
+                 $(form)[0].reset();
+               } else {
+                    //toastr.error(response.msg);
+               }
+            }
+        });
+        
+    } else {
+        $(form).find('span.error-text').text('Por favor, seleccione el archivo de imagen del favicon');
+    }
+
+});
+$('#social_media_form').on('submit',function(e){
+    e.preventDefault();
+
+    var csrfName = $('.ci_csrf_data').attr('name');
+    var csrfHash = $('.ci_csrf_data').val();
+    var form = this;
+    var formdata = new FormData(form);
+    formdata.append(csrfName, csrfHash);
+    
+    $.ajax({
+        url: $(form).attr('action'),
+        method: $(form).attr('method'),
+        data: formdata,
+        processData: false,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        beforeSend: function() {
+            //toastr.remove();
+            $(form).find('span.error-text').text('');
+        },
+        success: function(response) {
+
+            $('.ci_csrf_data').val(response.token);
+
+            if ($.isEmptyObject(response.error)) {
+                if (response.status == 1) {
+                    //toastr.success(response.msg);
+                    console.log("OK");
+                } else {
+                    //toastr.error(response.msg);
+                    console.log("ERROR");
+                }
+            } else {
+                $.each(response.error, function(prefix, val) {
+                    $(form).find('span.' + prefix + '_error').text(val);
+                });
+            }
+        }
+    });
+
+});
+
 </script>
 <?= $this->endSection() ?>
