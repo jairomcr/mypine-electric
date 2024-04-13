@@ -9,10 +9,21 @@ use App\Models\User;
 use App\Libraries\Hash;
 use App\Models\Settings;
 use App\Models\SocialMedia;
+use App\Models\Category;
+use SSP;
+use \Mberecall\CI_Slugify\SlugService;
+use App\Models\SubCategory;
 
 class AdminController extends BaseController
 {
     protected $helpers = ['url','form','CIMail','CIFunctions'];
+    protected $db;
+
+    public function __construct()
+    {
+        require_once APPPATH.'ThirdParty/ssp.php';
+        $this->db = db_connect();
+    }
     
     public function index()
     {
@@ -377,12 +388,319 @@ class AdminController extends BaseController
                 ])->update();
 
                 if ($update) {
-                    $user_info = $user->find($user_id);
-                    return json_encode(['status'=>1,'user_info'=>$user_info,'msg'=>'Done!']);
+                    return json_encode(['status'=>1,'token'=>csrf_hash(),'msg'=>'Done!']);
                 }else {
-                    return json_encode(['status'=>0,'msg'=>'Something went wrong.']);
+                    return json_encode(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong.']);
                 }
             }
         }
+    }
+    public function categories()
+    {
+        $data= array(
+            'pageTitle'=>'Categories',
+        );
+        return view('backend/pages/categories',$data);
+    }
+    public function addCategory()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $validation = \Config\Services::validation();
+
+            $this->validate([
+                'category_name'=> [
+                    'rules'=>'required|is_unique[categories.name]',
+                    'errors'=>[
+                        'required'=>'Introduce una categoria',
+                        'is_unique'=>'Ya esta categoria existe',
+                    ],
+                ],
+            ]);
+
+            if ($validation->run()=== FALSE ) {
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'error'=>$errors]);
+            } else {
+
+                $category = new Category();
+                $save = $category->save(['name'=>$request->getVar('category_name')]);
+
+                if ($save) {
+                    return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'New categorie has bee successfully added.']);
+                } else {
+                    return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong']);
+                }
+                
+            }
+            
+        }
+    }
+    public function getCategories()
+    {
+        //DB Details
+        $dbDetails = array(
+            "host"=>$this->db->hostname,
+            "user"=>$this->db->username,
+            "pass"=>$this->db->password,
+            "db"  =>$this->db->database
+        );
+
+        $table = "categories";
+        $primaryKey = "id";
+        $columns = array(
+            array(
+                "db"=>"id",
+                "dt"=>0
+            ),
+            array(
+                "db"=>"name",
+                "dt"=>1
+            ),
+            array(
+                "db"=>"id",
+                "dt"=>2,
+                "formatter"=>function($d,$row){
+                    return "(x) will be added later";
+                }
+            ),
+            array(
+                "db"=>"id",
+                "dt"=>3,
+                "formatter"=>function($d,$row){
+                    return "<div class='btn-group' >
+                        <button class='btn btn-sm btn-link p-0 mx-1 editCategoryBtn' data-id='".$row['id']."' >Editar</button>
+                        <button class='btn btn-sm btn-link p-0 mx-1 deleteCategoryBtn' data-id='".$row['id']."' >Delete</button>
+                    </div>";
+                }
+            ),
+            array(
+                "db"=>"ordering",
+                "dt"=>4,
+            ),
+        );
+        return json_encode(
+            SSP::simple($_GET,$dbDetails,$table,$primaryKey,$columns)
+        );
+    }
+    public function getCategory()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $id = $request->getVar('category_id');
+            $category = new Category();
+            $category_data = $category->find($id);
+            return $this->response->setJSON(['data'=>$category_data]);
+        }
+    }
+    public function updateCategory()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $id = $request->getVar('category_id');
+            $validation = \Config\Services::validation();
+                  
+
+            $this->validate([
+                'category_name'=> [
+                    'rules'=>'required|is_unique[categories.name,id,'.$id.']',
+                    'errors'=>[
+                        'required'=>'Introduce una categoria',
+                        'is_unique'=>'Ya existe esta categoria',
+                    ],
+                ],
+            ]);
+
+            if ($validation->run()=== FALSE ) {
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'error'=>$errors]);
+            } else {
+                $category = new Category();
+                $update = $category->where('id',$id)->set(['name'=>$request->getVar('category_name')])->update();
+
+                if($update)
+                {
+                    return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'New categorie has bee successfully added.']);
+                } else {
+                    return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong']);
+                }
+            }
+        }
+
+    }
+    public function deleteCategory()
+    {
+        $request = \Config\Services::request();
+        
+        if ($request->isAJAX()) {
+            $id = $request->getVar('category_id');
+            $category = new Category();
+
+            $delete = $category->delete($id);
+
+            if ($delete) {
+                return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'Category has bee successfully deleted.']);
+            } else {
+                return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong']);
+            }
+            
+        }
+    }
+
+    public function reorderCategories()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $positions = $request->getVar('positions');
+            $category = new Category();
+
+            foreach ($positions as $position) {
+                $index = $position[0];
+                $newPosition = $position[1];
+                $category->where('id',$index)->set(['ordering'=>$newPosition])->update();
+            }
+
+            return $this->response->setJSON(['status'=>1,'msg'=>'Categories ordering has been successfully updated.']);
+        }
+
+    }
+
+    public function getParentCategories()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+
+            $id = $request->getVar('parent_category_id');
+            $options = '<option value="0">Uncategorized</option>';
+            $category = new Category();
+            $parent_categories = $category->findAll();
+
+            if (count($parent_categories)) {
+                $added_options = '';
+
+                foreach ($parent_categories as $parent_category) {
+                    $isSelected = $parent_category['id'] == $id ? 'selected' : '';
+                    $added_options.='<option value="'.$parent_category['id'].'" '.$isSelected.' >'.$parent_category['name'].'</option>';
+                }
+                $options = $options.$added_options;
+                return $this->response->setJSON(['status'=>1,'data'=>$options]);
+
+            } else {
+                return $this->response->setJSON(['status'=>1,'data'=>$options]);
+            }
+            
+        }
+    }
+
+    public function addSubCategory()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $validation = \Config\Services::validation();
+                  
+
+            $this->validate([
+                'subcategory_name'=> [
+                    'rules'=>'required|is_unique[sub_categories.name]',
+                    'errors'=>[
+                        'required'=>'Introduce una subcategoria',
+                        'is_unique'=>'Ya existe esta subcategoria',
+                    ],
+                ],
+            ]);
+
+            if ($validation->run()=== FALSE ) {
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'error'=>$errors]);
+            } else {
+                $subcategory = new SubCategory();
+                $subcategory_name = $request->getVar('subcategory_name');
+                $subcategory_description = $request->getVar('description');
+                $subcategory_parent_category = $request->getVar('parent_cat');
+                $subcategory_slug = SlugService::model(SubCategory::class)->make($subcategory_name);
+
+                $save = $subcategory->save([
+                    'name'=>$subcategory_name,
+                    'parent_cat'=>$subcategory_parent_category,
+                    'slug'=>$subcategory_slug,
+                    'description'=>$subcategory_description,
+                ]);
+
+                if ($save) {
+                    return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'New sub categorie has bee successfully added.']);
+                } else {
+                    return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong']);
+                }
+                
+            }
+        }
+
+    }
+    public function getSubCategories()
+    {
+        $category = new Category();
+        $subcategory=new SubCategory();
+
+        //DB Details
+        $dbDetails = array(
+            "host"=>$this->db->hostname,
+            "user"=>$this->db->username,
+            "pass"=>$this->db->password,
+            "db"  =>$this->db->database
+        );
+        $table = "sub_categories";
+        $primaryKey = "id";
+        $columns = array(
+            array(
+                "db"=>"id",
+                "dt"=>0
+            ),
+            array(
+                "db"=>"name",
+                "dt"=>1
+            ),
+            array(
+                "db"=>"id",
+                "dt"=>2,
+                "formatter"=>function($d,$row) use ($category,$subcategory){
+                    $parent_cat_id = $subcategory->asObject()->where("id",$row['id'])->first()->parent_cat;
+                    $parent_cat_name = ' - ';
+                    if ($parent_cat_id != 0) {
+                        $parent_cat_name = $category->asObject()->where('id',$parent_cat_id)->first()->name;
+                    }
+                    return $parent_cat_name;
+                }
+            ),
+            array(
+                "db"=>"id",
+                "dt"=>3,
+                "formatter"=>function($d,$row){
+                    return "(x) will be added later";
+                }
+            ),
+            array(
+                "db"=>"id",
+                "dt"=>4,
+                "formatter"=>function($d,$row){
+                    return "<div class='btn btn-group'>
+                      <button class='btn btn-sm btn-link p-0 mx-1 editSubCategoryBtn' data-id='".$row['id']."' >Editar</button>
+                      <button class='btn btn-sm btn-link p-0 mx-1 deleteSubCategoryBtn' data-id='".$row['id']."' >Delete</button>
+                    </div>";
+                }
+            ),
+            array(
+                "db"=>"ordering",
+                "dt"=>5,
+            ),
+        );
+        return json_encode(
+            SSP::simple($_GET,$dbDetails,$table,$primaryKey,$columns)
+        ); 
     }
 }

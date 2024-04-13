@@ -75,6 +75,6 @@
 		<script src="/backend/vendors/scripts/process.js"></script>
 		<script src="/backend/vendors/scripts/layout-settings.js"></script>
 		<script src="<?= base_url('/extra-assets/ijaboCropTool/ijaboCropTool.min.js') ?>"></script>
-		<?= $this->renderSection('scprits') ?>
+		<?= $this->renderSection('scripts') ?>
 	</body>
 </html>

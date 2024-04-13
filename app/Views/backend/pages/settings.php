@@ -9,7 +9,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="<?= route_to('admin.home') ?>">Home</a>
+                        <a href="<?= route_to('admin.home') ?>">Incio</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         Setttings
@@ -185,7 +185,7 @@
 </div>
 <?= $this->endSection() ?>
 
-<?= $this->section('scprits') ?>
+<?= $this->section('scripts') ?>
 <script>
 $('#general_settings_form').on('submit', function(e) {
     e.preventDefault();
