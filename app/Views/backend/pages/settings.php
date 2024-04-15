@@ -186,6 +186,8 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
+<script src="/backend/src/plugins/sweetalert2/sweet-alert.init.js"></script>
+<script src="/backend/src/plugins/sweetalert2/sweetalert2.all.js"></script>
 <script>
 $('#general_settings_form').on('submit', function(e) {
     e.preventDefault();
@@ -215,7 +217,12 @@ $('#general_settings_form').on('submit', function(e) {
             if ($.isEmptyObject(response.error)) {
                 if (response.status == 1) {
                     //toastr.success(response.msg);
-                    console.log("OK");
+                    swal({
+                        text: 'Se han guardado correctamente los datos',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                 } else {
                     //toastr.error(response.msg);
                     console.log("ERROR");
@@ -273,6 +280,13 @@ $('#changeBlogLogoForm').on('submit',function(e){
                if (response.status == 1) {
                  //toastr.success(response.msg);
                  $(form)[0].reset();
+                 swal({
+                        text: 'Se ha guardado el logo',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+
+                    });
                } else {
                     //toastr.error(response.msg);
                }
@@ -329,6 +343,14 @@ $('#changeBlogFaviconForm').on('submit',function(e){
                if (response.status == 1) {
                  //toastr.success(response.msg);
                  $(form)[0].reset();
+                 swal({
+                       
+                        text: 'Se guardo el icono.',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+
+                    });
                } else {
                     //toastr.error(response.msg);
                }
@@ -368,7 +390,14 @@ $('#social_media_form').on('submit',function(e){
             if ($.isEmptyObject(response.error)) {
                 if (response.status == 1) {
                     //toastr.success(response.msg);
-                    console.log("OK");
+                    swal({
+                       
+                       text: 'Los datos han sido guardados correctamente.',
+                       type: 'success',
+                       showConfirmButton: false,
+                       timer: 1500,
+
+                   });
                 } else {
                     //toastr.error(response.msg);
                     console.log("ERROR");
