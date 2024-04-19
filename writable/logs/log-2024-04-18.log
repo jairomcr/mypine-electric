@@ -1,0 +1,221 @@
+INFO - 2024-04-18 03:37:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:37:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:37:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:37:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:38:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:38:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:38:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:38:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:38:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:42:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 03:46:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 04:09:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 04:17:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 04:17:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 04:24:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 04:25:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 04:27:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:22:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:22:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:22:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:22:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:24:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:51:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:51:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:52:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:52:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:53:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:53:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:53:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:55:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 20:55:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 21:28:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 21:30:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 21:30:07 --> Error: Call to undefined method App\Controllers\AdminController::move()
+in APPPATH\Controllers\AdminController.php on line 864.
+ 1 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->createPost()
+ 2 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 21:31:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 21:32:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 21:48:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 21:48:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 21:49:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 21:49:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:02:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:07:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:07:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:07:59 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:08:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:08:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:08:29 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:11:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:11:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:11:33 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:13:59 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:19:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:19:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:19:40 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:22:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:22:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:22:49 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:23:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:23:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:23:15 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:25:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:25:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:25:05 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:26:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:26:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:26:59 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:27:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:27:23 --> Error: Undefined constant "App\Controllers\id"
+in APPPATH\Controllers\AdminController.php on line 935.
+ 1 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 2 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 3 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:29:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:29:34 --> ErrorException: Undefined variable $category_id
+in APPPATH\Controllers\AdminController.php on line 950.
+ 1 APPPATH\Controllers\AdminController.php(950): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $category_id', 'C:\\xampp\\htdocs\\mypine-electrica\\app\\Controllers\\AdminController.php', 950)
+ 2 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 3 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 4 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:29:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:29:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:29:53 --> ErrorException: Undefined variable $category_id
+in APPPATH\Controllers\AdminController.php on line 950.
+ 1 APPPATH\Controllers\AdminController.php(950): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $category_id', 'C:\\xampp\\htdocs\\mypine-electrica\\app\\Controllers\\AdminController.php', 950)
+ 2 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 3 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 4 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:30:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:30:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-18 23:30:01 --> ErrorException: Undefined variable $category_id
+in APPPATH\Controllers\AdminController.php on line 950.
+ 1 APPPATH\Controllers\AdminController.php(950): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $category_id', 'C:\\xampp\\htdocs\\mypine-electrica\\app\\Controllers\\AdminController.php', 950)
+ 2 APPPATH\ThirdParty\ssp.php(50): App\Controllers\AdminController->App\Controllers\{closure}(1, [...])
+ 3 APPPATH\ThirdParty\ssp.php(284): SSP::data_output([...], [...], null)
+ 4 APPPATH\Controllers\AdminController.php(978): SSP::simple([...], [...], 'posts', 'id', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\AdminController->getPosts()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\mypine-electrica\\public\\index.php')
+INFO - 2024-04-18 23:30:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:30:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:32:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:32:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:36:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:36:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:37:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:37:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:37:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:38:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:39:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:41:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:44:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:45:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:50:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-18 23:51:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

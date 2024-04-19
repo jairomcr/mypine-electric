@@ -94,6 +94,7 @@
 <?php include('modals/category-modal-form.php'); ?>
 <?php include('modals/edit-category-modal-form.php'); ?>
 <?php include('modals/subcategory-modal-form.php'); ?>
+<?php include('modals/edit-subcategory-modal-form.php'); ?>
 <?= $this->endSection() ?>
 <?= $this->section('stylesheets') ?>
 <link rel="stylesheet" href="/backend/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
@@ -297,7 +298,7 @@ $(document).on('click', '.deleteCategoryBtn', function(e) {
             }, function(response) {
                 if (response.status == 1) {
                     categories_DT.ajax.reload(null, false);
-                    subcategoriesDT.ajax.reload(null,false);
+                    subcategoriesDT.ajax.reload(null, false);
                     swal({
                         title: '¡Eliminar!',
                         text: 'Tu categoria ha sido eliminado.',
@@ -334,7 +335,7 @@ $('table#categories-table').find('tbody').sortable({
         }, function(response) {
             if (response.status == 1) {
                 swal({
-                    text: 'El pedido de categorías se ha actualizado correctamente.',
+                    text: 'El orden de las categorías se ha realizado correctamente.',
                     type: 'success',
                     showConfirmButton: false,
                     timer: 1500,
@@ -408,7 +409,8 @@ $(document).on('submit', '#add_subcategory_form', function(e) {
                         timer: 1500,
 
                     });
-                    subcategoriesDT.ajax.reload(null,false);
+                    subcategoriesDT.ajax.reload(null, false);
+                    categories_DT.ajax.reload(null, false);
                     //toastr.success(response.msg);
                 } else {
                     //toastr.error(response.msg);
@@ -448,5 +450,164 @@ var subcategoriesDT = $('#sub-categories-table').DataTable({
         [5, 'asc']
     ]
 });
+
+$(document).on('click', '.editSubCategoryBtn', function(e) {
+    e.preventDefault();
+    var subcategory_id = $(this).data('id');
+    var get_subcategory_url = "<?= route_to('get-subcategory') ?>";
+    var get_parent_categories_url = "<?= route_to('get-parent-categories') ?>";
+    var modal_title = 'Editar Subcategorias';
+    var modal_btn_text = 'Guardar';
+    var modal = $('body').find('div#edit-sub-category-modal');
+    modal.find('.modal-title').html(modal_title);
+    modal.find('.modal-footer > button.action').html(modal_btn_text);
+    modal.find('span.error-text').html('');
+    var select = modal.find('select[name="parent_cat"]');
+
+    $.getJSON(get_subcategory_url, {
+        subcategory_id: subcategory_id
+    }, function(response) {
+        modal.find('input[type="text"][name="subcategory_name"]').val(response.data.name);
+        modal.find('form').find('input[type="hidden"][name="subcategory_id"]').val(response.data.id);
+        modal.find('form').find('textarea[name="description"]').val(response.data.description);
+
+        $.getJSON(get_parent_categories_url, {
+            parent_category_id: response.data.parent_cat
+        }, function(response) {
+            select.find('option').remove();
+            select.html(response.data);
+        });
+        modal.modal('show');
+    });
+
+
+});
+
+$('#update_subcategory_form').on('submit', function(e) {
+    e.preventDefault();
+    //CSRF
+    var csrfName = $('.ci_csrf_data').attr('name');
+    var csrfHash = $('.ci_csrf_data').val();
+    var form = this;
+    var modal = $('body').find('div#edit-sub-category-modal');
+    var formdata = new FormData(form);
+    formdata.append(csrfName, csrfHash);
+
+    $.ajax({
+        url: $(form).attr('action'),
+        method: $(form).attr('method'),
+        data: formdata,
+        processData: false,
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        beforeSend: function() {
+            //toastr.remove();
+            $(form).find('span.error-text').text('');
+        },
+        success: function(response) {
+            //Update CSRF Hash
+            $('.ci_csrf_data').val(response.token);
+
+            if ($.isEmptyObject(response.error)) {
+                if (response.status == 1) {
+                    $(form)[0].reset();
+                    modal.modal('hide');
+                    swal({
+                        text: 'Su subcategoria se a guardado.',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+
+                    });
+                    subcategoriesDT.ajax.reload(null, false);
+                    categories_DT.ajax.reload(null, false);
+                    //toastr.success(response.msg);
+                } else {
+                    //toastr.error(response.msg);
+                    console.log("ERROR");
+                }
+            } else {
+                $.each(response.error, function(prefix, val) {
+                    $(form).find('span.' + prefix + '_error').text(val);
+                });
+            }
+        }
+
+    });
+});
+$('table#sub-categories-table').find('tbody').sortable({
+    update: function(event, ui) {
+        $(this).children().each(function(index) {
+            if ($(this).attr('data-ordering') != (index + 1)) {
+                $(this).attr('data-ordering', (index + 1)).addClass('updated');
+            }
+        });
+        var positions = [];
+
+        $('.updated').each(function() {
+            positions.push([$(this).attr('data-index'), $(this).attr('data-ordering')]);
+            $(this).removeClass('updated');
+        });
+        var url = "<?= route_to('reorder-subcategories') ?>";
+
+        $.get(url, {
+            positions: positions
+        }, function(response) {
+            if (response.status == 1) {
+                swal({
+                    text: 'El orden de las subcategorías se ha realizado correctamente.',
+                    type: 'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+
+                });
+                subcategoriesDT.ajax.reload(null, false);
+            }
+        });
+
+    }
+});
+//Delete Sub Category
+$(document).on('click', '.deleteSubCategoryBtn', function(e) {
+    e.preventDefault();
+    var subcategory_id = $(this).data('id');
+    var url = "<?= route_to('delete-subcategory') ?>";
+    swal({
+        title: 'Estas seguro?',
+        text: "¡No podrás revertir esto!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-success margin-5',
+        cancelButtonClass: 'btn btn-danger margin-5',
+        confirmButtonText: '¡Yes, eliminar!',
+        cancelButtonText: '¡No, cancelar!',
+        buttonsStyling: false,
+
+    }).then(function(result) {
+
+        if (result.value) {
+            $.get(url, {
+                subcategory_id:subcategory_id
+            }, function(response) {
+                if (response.status == 1) {
+                    subcategoriesDT.ajax.reload(null, false);
+                    categories_DT.ajax.reload(null, false);
+                    swal({
+                        title: '¡Eliminar!',
+                        text: 'Tu categoria ha sido eliminado.',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+
+                    });
+                } else {
+
+                }
+            })
+        }
+    });
+});
+
 </script>
 <?= $this->endSection() ?>

@@ -13,6 +13,7 @@ use App\Models\Category;
 use SSP;
 use \Mberecall\CI_Slugify\SlugService;
 use App\Models\SubCategory;
+use App\Models\Post;
 
 class AdminController extends BaseController
 {
@@ -462,7 +463,9 @@ class AdminController extends BaseController
                 "db"=>"id",
                 "dt"=>2,
                 "formatter"=>function($d,$row){
-                    return "(x) will be added later";
+                    $subcategory = new SubCategory();
+                    $subcategories = $subcategory->where(['parent_cat'=>$row['id']])->findAll();
+                    return count($subcategories);
                 }
             ),
             array(
@@ -702,5 +705,288 @@ class AdminController extends BaseController
         return json_encode(
             SSP::simple($_GET,$dbDetails,$table,$primaryKey,$columns)
         ); 
+    }
+
+    public function getSubCategory()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $id = $request->getVar('subcategory_id');
+            $subcategory = new SubCategory();
+            $subcategory_data=$subcategory->find($id);
+            return $this->response->setJSON(['data'=>$subcategory_data]);
+        }
+    }
+    public function updateSubCategory()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $id = $request->getVar('subcategory_id');
+            $validation = \Config\Services::validation(); 
+
+            $this->validate([
+                'subcategory_name'=> [
+                    'rules'=>'required|is_unique[sub_categories.name]',
+                    'errors'=>[
+                        'required'=>'Introduce una subcategoria',
+                        'is_unique'=>'Ya existe esta subcategoria',
+                    ],
+                ],
+            ]);
+
+            if ($validation->run()=== FALSE) {
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'error'=>$errors]);
+            } else {
+                $subcategory = new SubCategory();
+                $data = array(
+                    'name'=>$request->getVar('subcategory_name'),
+                    'parent_cat'=>$request->getVar('parent_cat'),
+                    'description'=>$request->getVar('description'),
+                );
+                $save = $subcategory->update($id,$data);
+                
+                if( $save )
+                {
+                    return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>' Sub categorie has bee successfully added.']);
+                } else {
+                    return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong']);
+                }
+
+            }
+            
+
+        }
+    }
+    public function reorderSubCategories()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $positions = $request->getVar('positions');
+            $subcategory = new SubCategory();
+
+            foreach ($positions as $position) {
+                $index = $position[0];
+                $newPosition = $position[1];
+                $subcategory->where('id',$index)->set(['ordering'=>$newPosition])->update();
+            }
+
+            return $this->response->setJSON(['status'=>1,'msg'=>'Sub categories order has been successfully changed.']);
+        }
+        
+    }
+    public function deleteSubCategory()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $id = $request->getVar('subcategory_id');
+            $subcategory = new SubCategory;
+
+            //Delete sub category
+            $delete = $subcategory->where('id',$id)->delete();
+
+            if ($delete) {
+                return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>' Sub Category has bee successfully deleted.']);
+            } else {
+                return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong']);
+            }
+            
+        }
+
+    }
+    public function addPost()
+    {
+        $subcategory = new SubCategory();
+        $data = [
+            'pageTitle'=>'Agregar nuevos post',
+            'categories'=>$subcategory->asObject()->findAll(),
+        ];
+        return view('backend/pages/new-post',$data);
+    }
+    public function createPost()
+    {
+        $request = \Config\Services::request();
+
+        if ($request->isAJAX()) {
+            $validation = \Config\Services::validation();
+
+            $this->validate([
+                'title'=> [
+                    'rules'=>'required',
+                    'errors'=>[
+                        'required'=>'Post title is required',
+                       // 'is_unique'=>'This post title is already exists',
+                    ],
+                ],
+                'content'=> [
+                    'rules'=>'required|min_length[20]',
+                    'errors'=>[
+                        'required'=>'Post content is required',
+                        'min_length'=>'Post content must have atleast 20 characters',
+                    ],
+                ],
+                'category'=> [
+                    'rules'=>'required',
+                    'errors'=>[
+                        'required'=>'Select post category',
+                    ],
+                ],
+                'featured_image'=> [
+                    'rules'=>'uploaded[featured_image]|is_image[featured_image]|max_size[featured_image,2048]',
+                    'errors'=>[
+                        'uploaded'=>'Featured image is required',
+                        'is_image'=>'Select an image file type',
+                        'max_size'=>'Select image that not excess 2MB is size'
+                    ],
+                ],
+            ]);
+
+            if ($validation->run()=== FALSE ) {
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'error'=>$errors]);
+            } else {
+
+                $user_id = CIAuth::id();
+                $path = 'img/posts/';
+                $file = $request->getFile('featured_image');
+                $filename=$file->getClientName();
+
+                //Make post featured images folder is not exists
+                if (!is_dir($path)) {
+                    mkdir($path,0777,true);
+                }
+
+                //Uploade featured image
+                if ($file->move($path,$filename)) {
+                    //Create thumb image
+                    \Config\Services::image()->withFile($path.$filename)->fit(150,150,'center')->save($path.'thumb_'.$filename);
+
+                    //Create resized image
+                    \Config\Services::image()->withFile($path.$filename)->resize(450,450,'width')->save($path.'resize_'.$filename);
+
+                    //Save new post details
+                    $post = new Post();
+
+                    $data = array(
+                        'author_id'=>$user_id,
+                        'category_id'=>$request->getVar('category'),
+                        'title'=>$request->getVar('title'),
+                        'slug'=>SlugService::model(Post::class)->make($request->getVar('title')),
+                        'content'=>$request->getVar('content'),
+                        'featured_image'=>$filename,
+                        'tags'=>$request->getVar('tags'),
+                        'meta_keywords'=>$request->getVar('meta_keywords'),
+                        'meta_description'=>$request->getVar('meta_description'),
+                        'visibility'=>$request->getVar('visibility'),
+
+                    );
+                    $save = $post->insert($data);
+                    $last_id = $post->getInsertID();
+
+                    if ($save) {
+                        return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'New post has bee successfully created.']);
+                    } else {
+                        return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong.']);
+                    }
+                    
+
+                } else {
+                    return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Error on uploading featured image.']);
+                }
+                
+
+            }
+            
+        }
+
+    }
+    public function allPosts()
+    {
+        $data = [
+            'pageTitle'=>'Ver publicaciones'
+        ];
+        return view('backend/pages/all-posts',$data);
+    }
+    public function getPosts()
+    {
+        //DB Details
+        $dbDetails = array(
+            "host"=>$this->db->hostname,
+            "user"=>$this->db->username,
+            "pass"=>$this->db->password,
+            "db"  =>$this->db->database
+        );
+        $table = "posts";
+        $primaryKey = "id";
+        $columns = array(
+            array(
+                "db"=>"id",
+                "dt"=>0
+            ),
+            array(
+                "db"=>"id",
+                "dt"=>1,
+                "formatter"=>function($d,$row){
+                    $post = new Post();
+                    $image = $post->asObject()->find($row['id'])->featured_image;
+                    return "<img src='/img/posts/thumb_$image' class='img-thumbnail' style='max-width:70px' >";
+                }
+            ),
+            array(
+                "db"=>"title",
+                "dt"=>2
+            ),
+            array(
+                "db"=>"id",
+                "dt"=>3,
+                "formatter"=>function($d,$row){
+                    $post = new Post();
+                    $category_id = $post->asObject()->find($row['id'])->category_id;
+                    $subcategory = new SubCategory();
+                    $category_name =  $subcategory->asObject()->find($category_id)->name;
+
+                    return $category_name;
+                }
+            ),
+            array(
+                "db"=>"id",
+                "dt"=>4,
+                "formatter"=>function($d,$row){
+                    $post = new Post();
+                    $visibility = $post->asObject()->find($row['id'])->visibility;
+
+                    return $visibility == 1 ? 'Public' : 'Private' ;
+                }
+            ),
+            array(
+                "db"=>"id",
+                "dt"=>5,
+                "formatter"=>function($d,$row){
+                   return "<div class='btn-group' >
+                        <a href='' class='btn btn-sm btn-link p-0 mx-1' >Ver</a>
+                        <a href='".route_to('edit-post',$row['id'])."' class='btn btn-sm btn-link p-0 mx-1' >Editar</a>
+                        <button class='btn btn-sm btn-link p-0 mx-1 deletePostBtn' data-id='".$row['id']."'>Eliminar</button>
+                   </div>";
+                }
+            ),
+        );
+        return json_encode(
+            SSP::simple($_GET,$dbDetails,$table,$primaryKey,$columns)
+        );
+    }
+    public function editPost($id)
+    {
+       $subcategory = new SubCategory();
+       $post = new Post();
+       $data = [
+            'pageTitle'=>'Editar post',
+            'categories'=>$subcategory->asObject()->findAll(),
+            'post'=>$post->asObject()->find($id),
+       ]; 
+       return view('backend/pages/edit-post',$data);
     }
 }
