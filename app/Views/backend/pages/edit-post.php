@@ -22,7 +22,7 @@
         </div>
     </div>
 </div>
-<form action="" method="post" autocomplete="off" enctype="multipart/form-data"
+<form action="<?= route_to('update-post') ?>" method="post" autocomplete="off" enctype="multipart/form-data"
     id="updatePostForm">
     <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" class="ci_csrf_data">
     <input type="hidden" name="post_id" value="<?= $post->id ?>" >
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label for=""><b>Contenido</b></label>
-                        <textarea name="content" cols="30" rows="10" class="form-control"  placeholder="Type........."><?= $post->content ?></textarea>
+                        <textarea name="content" cols="30" rows="10" class="form-control" id="content" placeholder="Type........."><?= $post->content ?></textarea>
                         <span class="text-danger error-text content_error"></span>
                     </div>
                 </div>
@@ -111,7 +111,16 @@
 <script src="/backend/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 <script src="/backend/src/plugins/sweetalert2/sweet-alert.init.js"></script>
 <script src="/backend/src/plugins/sweetalert2/sweetalert2.all.js"></script>
+<script src="/extra-assets/ckeditor/ckeditor.js"></script>
 <script>
+$(function() {
+    var elfinderPath = '/extra-assets/elFinder/elfinder.src.php?integration=ckeditor&uid=<?= CIAuth::id() ?>';
+    CKEDITOR.replace('content',{
+        filebrowserBrowseUrl:elfinderPath,
+        filebrowserImageBrowseUrl:elfinderPath+'&type=image',
+        removeDialogTabs:'link:upload;image:upload'
+    });
+});
 /*$(document).on('change', '#file', function(e) {
         e.preventDefault();
 
@@ -127,14 +136,16 @@
 
     });*/
 //$(document).getElementById('file').on('change',cambiarImagen);
-$('#addPostForm').on('submit', function(e) {
+$('#updatePostForm').on('submit', function(e) {
     e.preventDefault();
 
     var csrfName = $('.ci_csrf_data').attr('name');
     var csrfHash = $('.ci_csrf_data').val();
     var form = this;
+    var content = CKEDITOR.instances.content.getData();
     var formdata = new FormData(form);
     formdata.append(csrfName, csrfHash);
+    formdata.append('content', content);
 
     $.ajax({
 
@@ -155,13 +166,13 @@ $('#addPostForm').on('submit', function(e) {
 
             if ($.isEmptyObject(response.error)) {
                 if (response.status == 1) {
-                    $(form)[0].reset();
+                    //$(form)[0].reset();
 
-                    $('img#image-previewer').attr('src','');
-                    $('input[name="tags"]').tagsinput('removeAll');
+                    //$('img#image-previewer').attr('src','');
+                    //$('input[name="tags"]').tagsinput('removeAll');
 
                     swal({
-                        text: 'Se ha creado una publicación .',
+                        text: 'Se han actualizado los datos.',
                         type: 'success',
                         showConfirmButton: false,
                         timer: 1500,

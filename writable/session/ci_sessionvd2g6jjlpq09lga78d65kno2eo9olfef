@@ -1,1 +1,0 @@
-__ci_last_regenerate|i:1712787893;_ci_previous_url|s:33:"http://localhost:8080/admin/login";fail|s:25:"Incorrecta la contraseña";__ci_vars|a:2:{s:4:"fail";s:3:"old";s:13:"_ci_old_input";s:3:"old";}_ci_old_input|a:2:{s:3:"get";a:0:{}s:4:"post";a:3:{s:14:"csrf_test_name";s:32:"07da506835c610bedf8bbdf6a5a64a7b";s:8:"login_id";s:5:"admin";s:8:"password";s:8:"adadqeqe";}}

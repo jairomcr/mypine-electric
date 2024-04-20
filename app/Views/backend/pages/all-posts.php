@@ -32,15 +32,16 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="data-table table stripe hover nowrap dataTable no-footer dtr-inline collapsed" id="posts-table" >
+                <table class="data-table table stripe hover nowrap dataTable no-footer dtr-inline collapsed"
+                    id="posts-table">
                     <thead>
                         <tr>
-                            <th scope="col" >#</th>
-                            <th scope="col" >Featured image</th>
-                            <th scope="col" >Titulo</th>
-                            <th scope="col" >Categoria</th>
-                            <th scope="col" >Visibilidad</th>
-                            <th scope="col" >Action</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Featured image</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Visibilidad</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -60,25 +61,66 @@
 <script src="/backend/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="/backend/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 <script src="/backend/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<script src="/backend/src/plugins/sweetalert2/sweet-alert.init.js"></script>
+<script src="/backend/src/plugins/sweetalert2/sweetalert2.all.js"></script>
 
 <script>
-    //Retrieve posts
-    var posts_DT = $('table#posts-table').DataTable({
-        scrollCollapse:true,
-        responsive:true,
-        autoWidth:false,
-        processing: true,
-        serverSide: true,
-        ajax:"<?= route_to('get-posts') ?>",
-        "dom":"IBfrtip",
-        info:true,
-        fnCreatedRow:function(row,data,index){
-            $('td',row).eq(0).html(index+1);
-        },
-        columDefs:[
-            {orderable:false, targets:[0,1,2,3,4,5]}
-        ]
+//Retrieve posts
+var posts_DT = $('table#posts-table').DataTable({
+    scrollCollapse: true,
+    responsive: true,
+    autoWidth: false,
+    processing: true,
+    serverSide: true,
+    ajax: "<?= route_to('get-posts') ?>",
+    "dom": "IBfrtip",
+    info: true,
+    fnCreatedRow: function(row, data, index) {
+        $('td', row).eq(0).html(index + 1);
+    },
+    columDefs: [{
+        orderable: false,
+        targets: [0, 1, 2, 3, 4, 5]
+    }]
+});
+$(document).on('click', '.deletePostBtn', function(e) {
+    e.preventDefault();
+    var post_id = $(this).data('id');
+    var url = "<?= route_to('delete-post') ?>";
+    swal({
+        title: 'Estas seguro?',
+        text: "¡Desea eleminar esta publicación!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-success margin-5',
+        cancelButtonClass: 'btn btn-danger margin-5',
+        confirmButtonText: '¡Yes, eliminar!',
+        cancelButtonText: '¡No, cancelar!',
+        buttonsStyling: false,
+
+    }).then(function(result) {
+
+        if (result.value) {
+            $.get(url, { post_id:post_id }, function(response) {
+                
+                if (response.status == 1) {
+                    
+                    posts_DT.ajax.reload(null, false);
+                    swal({
+                        title: '¡Eliminar!',
+                        text: 'Tu publicación ha sido eliminada.',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+
+                    });
+                } else {
+
+                }
+            })
+        }
     });
+});
 </script>
 
 <?= $this->endSection() ?>

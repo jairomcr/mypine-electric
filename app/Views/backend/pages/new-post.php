@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label for=""><b>Contenido</b></label>
-                        <textarea name="content" cols="30" rows="10" class="form-control"
+                        <textarea name="content" cols="30" rows="10" class="form-control" id="content"
                             placeholder="Type........."></textarea>
                         <span class="text-danger error-text content_error"></span>
                     </div>
@@ -117,30 +117,31 @@
 <script src="/backend/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 <script src="/backend/src/plugins/sweetalert2/sweet-alert.init.js"></script>
 <script src="/backend/src/plugins/sweetalert2/sweetalert2.all.js"></script>
+<script src="/extra-assets/ckeditor/ckeditor.js"></script>
 <script>
-/*$(document).on('change', '#file', function(e) {
-        e.preventDefault();
+$(function() {
+    CKEDITOR.replace('content');
+});
+document.getElementById('change',cambiarImagen);
+function cambiarImagen(e){
+    var file = e.target.files[0];
+    var reader = new FileReader();
 
-        function cambiarImagen(e){
-        var file = e.target.files[0];
-        var reader = new FileReader();
-        reader.onload = (e) => {
-            document.getElementById('image-previewer').setAttribute('src',event.target.result);
-
-        }
-        reader.readAsDataURL(file);
+    reader.onload = (e) => {
+        document.getElementById('image-previewer').setAttribute('src',e.target.result);
     }
-
-    });*/
-//$(document).getElementById('file').on('change',cambiarImagen);
+    reader.readAsDataUrl(file);
+}
 $('#addPostForm').on('submit', function(e) {
     e.preventDefault();
 
     var csrfName = $('.ci_csrf_data').attr('name');
     var csrfHash = $('.ci_csrf_data').val();
     var form = this;
+    var content = CKEDITOR.instances.content.getData();
     var formdata = new FormData(form);
     formdata.append(csrfName, csrfHash);
+    formdata.append('content', content);
 
     $.ajax({
 
@@ -162,8 +163,9 @@ $('#addPostForm').on('submit', function(e) {
             if ($.isEmptyObject(response.error)) {
                 if (response.status == 1) {
                     $(form)[0].reset();
+                    CKEDITOR.instances.content.setData('');
 
-                    $('img#image-previewer').attr('src','');
+                    $('img#image-previewer').attr('src', '');
                     $('input[name="tags"]').tagsinput('removeAll');
 
                     swal({
