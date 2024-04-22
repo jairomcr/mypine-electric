@@ -542,12 +542,25 @@ class AdminController extends BaseController
             $id = $request->getVar('category_id');
             $category = new Category();
 
-            $delete = $category->delete($id);
+            /*$delete = $category->delete($id);
 
             if ($delete) {
                 return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>'Category has bee successfully deleted.']);
             } else {
                 return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong']);
+            }*/
+            $subcategory = new SubCategory();
+            $subcategories = $subcategory->where('parent_cat',$id)->findAll();
+            if ($subcategories) {
+                $msg = count($subcategories) == 1 ? 'this is('.count($subcategories).') Sub category related to this parent category, so that it can not be deleted.' : 'There are('.count($subcategories).') Sub categories related to this parent category, so that it can not be deleted.';
+                return $this->request->setJSON(['status'=>0,'msg'=>$msg]); 
+            } else {
+                $delete = $category->where('id',$id)->deleted();
+                if ($delete) {
+                    return $this->request->setJSON(['status'=>1,'msg'=>'Good']);
+                } else {
+                    return $this->request->setJSON(['status'=>0,'msg'=>'Something went wrong']);
+                }
             }
             
         }
@@ -684,7 +697,9 @@ class AdminController extends BaseController
                 "db"=>"id",
                 "dt"=>3,
                 "formatter"=>function($d,$row){
-                    return "(x) will be added later";
+                    $post = new Post();
+                    $posts = $post->where(['category_id'=>$row['id']])->finAll();
+                    return count($posts);
                 }
             ),
             array(
@@ -787,12 +802,26 @@ class AdminController extends BaseController
             $subcategory = new SubCategory;
 
             //Delete sub category
-            $delete = $subcategory->where('id',$id)->delete();
+            /*$delete = $subcategory->where('id',$id)->delete();
 
             if ($delete) {
                 return $this->response->setJSON(['status'=>1,'token'=>csrf_hash(),'msg'=>' Sub Category has bee successfully deleted.']);
             } else {
                 return $this->response->setJSON(['status'=>0,'token'=>csrf_hash(),'msg'=>'Something went wrong']);
+            }*/
+            $post = new Post();
+            $posts = $post->where('category_id',$id)->findAll();
+            $msg= '';
+            if ($posts) {
+                $msg = count($posts) == 1 ? 'this is('.count($posts).') Post related to this parent subcategory, so that it can not be deleted.' : 'There are('.count($posts).') Posts related to this parent category, so that it can not be deleted.';
+                return $this->request->setJSON(['status'=>0,'msg'=>$msg]); 
+            } else {
+                $delete = $subcategory->where('id',$id)->deleted();
+                if ($delete) {
+                    return $this->request->setJSON(['status'=>1,'msg'=>'Good']);
+                } else {
+                    return $this->request->setJSON(['status'=>0,'msg'=>'Something went wrong']);
+                }
             }
             
         }

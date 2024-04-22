@@ -64,4 +64,12 @@ if (!function_exists('get_social_media')) {
         return $result;
         
     }
+    
+}
+if (!function_exists('current_route_name')) {
+    function current_route_name(){
+        $route = \CodeIgniter\Config\Services::router();
+        $route_name = $route->getMatchedRouteOptions()['as'];
+        return $route_name;
+    }
 }

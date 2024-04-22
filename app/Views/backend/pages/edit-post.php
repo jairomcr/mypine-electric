@@ -114,12 +114,13 @@
 <script src="/extra-assets/ckeditor/ckeditor.js"></script>
 <script>
 $(function() {
-    var elfinderPath = '/extra-assets/elFinder/elfinder.src.php?integration=ckeditor&uid=<?= CIAuth::id() ?>';
-    CKEDITOR.replace('content',{
+
+    //var elfinderPath = '/extra-assets/elFinder/elfinder.src.php?integration=ckeditor&uid=';
+    CKEDITOR.replace('content',/*{
         filebrowserBrowseUrl:elfinderPath,
         filebrowserImageBrowseUrl:elfinderPath+'&type=image',
         removeDialogTabs:'link:upload;image:upload'
-    });
+    }*/);
 });
 /*$(document).on('change', '#file', function(e) {
         e.preventDefault();

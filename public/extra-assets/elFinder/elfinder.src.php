@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-	<title>elFinder 2.1.x source version with PHP connector</title>
+	<title>Findername</title>
 
 	<!-- Section CSS -->
 	<!-- jQuery UI (REQUIRED) -->
@@ -127,6 +128,8 @@
 	<!-- elfinder initialization  -->
 	<script>
 		$(function() {
+			const urlParams = new URLSearchParams(window.location.search);
+			const uid = urlParams.get('uid');
 			$('#elfinder').elfinder(
 				// 1st Arg - options
 				{
@@ -137,11 +140,19 @@
 					baseUrl : './',
 
 					// Connector URL
-					url : 'php/connector.minimal.php',
+					url : 'php/connector.minimal.php?uid='+uid,
 
 					// Callback when a file is double-clicked
-					getFileCallback : function(file) {
-						// ...
+					getFileCallback : function(file,fm) {
+						let fileURL = file.url;
+						let imageFullPath = new URL(fm.convAbsUrl(fileURL));
+						let relImagePath = imageFullPath.pathname;
+
+						var funcNum = window.location.search.replace(/^.*CKEditorFuncNum=(\d+).*$/,"$1");
+						var langCode = window.location.search.replace(/^.*langCode=([a-z]{2}).*$/,"$1");
+                          
+						fm.destroy();
+						window.close();
 					},
 				},
 				

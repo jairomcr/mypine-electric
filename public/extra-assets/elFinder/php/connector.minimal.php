@@ -144,14 +144,23 @@ function access($attr, $path, $data, $volume, $isDir, $relpath) {
 
 // Documentation for connector options:
 // https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
+$user_id= $_GET['uid'];       
+$user_folder_path = '../../files/media'.user_id.'_files'; 
+$user_trash_folder_path =$user_folder_path.'/.trash';
+if (!is_dir($user_folder_path)) {
+	mkdir($user_folder_path,0777,true);
+}
+if (!is_dir($user_trash_folder_path)) {
+	mkdir($user_trash_folder_path,0777,true);
+}
 $opts = array(
 	// 'debug' => true,
 	'roots' => array(
 		// Items volume
 		array(
 			'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
-			'path'          => '../files/',                 // path to files (REQUIRED)
-			'URL'           => dirname($_SERVER['PHP_SELF']) . '/../files/', // URL to files (REQUIRED)
+			'path'          => $user_folder_path,                 // path to files (REQUIRED)
+			'URL'           => dirname($_SERVER['PHP_SELF']) . '/'.$user_folder_path, // URL to files (REQUIRED)
 			'trashHash'     => 't1_Lw',                     // elFinder's hash of trash folder
 			'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
 			'uploadDeny'    => array('all'),                // All Mimetypes not allowed to upload
@@ -163,8 +172,8 @@ $opts = array(
 		array(
 			'id'            => '1',
 			'driver'        => 'Trash',
-			'path'          => '../files/.trash/',
-			'tmbURL'        => dirname($_SERVER['PHP_SELF']) . '/../files/.trash/.tmb/',
+			'path'          => $user_folder_path.'/',
+			'tmbURL'        => dirname($_SERVER['PHP_SELF']) . '/'.$user_trash_folder_path.'\/.tmb/',
 			'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
 			'uploadDeny'    => array('all'),                // Recomend the same settings as the original volume that uses the trash
 			'uploadAllow'   => array('image/x-ms-bmp', 'image/gif', 'image/jpeg', 'image/png', 'image/x-icon', 'text/plain'), // Same as above
